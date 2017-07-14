@@ -1,5 +1,46 @@
 @import url(https://fonts.googleapis.com/css?family=Aclonica);
 
+html, body {
+  height: 100%;
+  text-align: center;
+}
+
+#bkgrd {
+background: #bbdfff;
+background-repeat: no-repeat;
+background-position: center;
+background-attachment: fixed;
+background-size: cover;
+overflow: auto;
+height: 100%;
+width: 100%;
+}
+
+#weatherBox {
+  padding-top: 10%;
+  color: #0f3d7a
+}
+
+.icon {
+  margin-right: 3%;
+  margin-left: 3%;
+  font-size: 10em;
+  color: #09178c;
+}
+
+#city {
+  font-family: 'Aclonica', sans-serif;
+  font-size: 6em;
+  text-shadow: #6063c6 3px 3px;
+  line-height: 2em;
+}
+
+.temp {
+  font-family: 'Aclonica', sans-serif;
+  font-size: 8em;
+  color: #0f3d7a;
+}
+
 button {
   width: 100px;
   height: 50px;
@@ -7,70 +48,37 @@ button {
   background-color: #bed1f3;
 }
 
-div {
-  border-style: dashed;
-}
-
-html, body {
-  height: 100%;
-  text-align: center;
-}
-
-#bkgrd {
-background: #8888e8;
-background-repeat: no-repeat;
-background-position: center;
-background-attachment: fixed;
-background-size: cover;
-height: 100%;
-width: 100%;
-
-
-}
-
-#weatherBox {
-  padding-top: 10%;
-  color: #0f3d7a
-
-}
-
-.icon {
-  margin-right: 3%;
-  margin-left: 3%;
-  font-size: 800%;
-  color: #1e5b91
-
-}
-
-#city {
-  font-family: 'Aclonica', sans-serif;
-  font-size: 10vh;
-  text-shadow: #6063c6 3px 3px;
-  line-height: 2em;
-}
-
-.temp {
-  font-family: 'Aclonica', sans-serif;
-  font-size: 700%;
-  color: #0f3d7a
-
-}
-
-
 .desc {
   font-size: 2em;
   font-style: italic;
-}
-
-#details {
-  width: 100%;
-  background-color: #c8d5e1;
 }
 
 .scale-btn {
   font-size: 1.5em;
 }
 
-#toggle {
-  background-color: #708aac;
+/* Media Queries */
+
+@media (max-height: 530px) {
+  #weatherBox {padding-top: 1%;}
+}
+
+@media (max-height: 420px) {
+  .icon {font-size: 8em}
+  #city {font-size: 4em}
+  .temp {font-size: 6em}
+  button {height: 50px; width: 60px;}
+}
+
+@media (max-height: 310px) {
+  .icon {font-size: 6em}
+  #city {font-size: 3em}
+  .temp {font-size: 4em}
+  button {height: 40px; width: 50px; float: left;}
+}
+
+@media (max-width: 700px) {
+  .icon {font-size: 8em}
+  #city {font-size: 4em}
+  .temp {font-size: 6em}
 }
