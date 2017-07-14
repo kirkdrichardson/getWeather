@@ -1,35 +1,76 @@
-body {
-background-color: red;
-margin: 2%;
-padding: 2%;
+@import url(https://fonts.googleapis.com/css?family=Aclonica);
+
+button {
+  width: 100px;
+  height: 50px;
+  border-radius: 10%;
+  background-color: #bed1f3;
 }
 
-.container {
-    display: flex;
-    flex-wrap: auto;
-    height: 100%;
-    width: 100%;
+div {
+  border-style: dashed;
+}
+
+html, body {
+  height: 100%;
+  text-align: center;
+}
+
+#bkgrd {
+background: #8888e8;
+background-repeat: no-repeat;
+background-position: center;
+background-attachment: fixed;
+background-size: cover;
+height: 100%;
+width: 100%;
+
+
 }
 
 #weatherBox {
-    border-style: solid;
-    display: inline-flex;
-    margin: 5% auto;
-    height: 70vh;
-    width: 70vw;
+  padding-top: 10%;
+  color: #0f3d7a
+
 }
 
-button {
-  clear: both;
-  display: block;
-  margin: 2% auto 2%;
-  width:200%;
-  height: 10%;
-  min-height: 30px;
-  background-color: #4a1154;
-  border-radius: 5%;
-  color:  #e0c8c8;
-  font-size: larger;
-  font-family: sans-serif;
-  border-color: rgba(173, 148, 148, 0.58)
+.icon {
+  margin-right: 3%;
+  margin-left: 3%;
+  font-size: 800%;
+  color: #1e5b91
+
+}
+
+#city {
+  font-family: 'Aclonica', sans-serif;
+  font-size: 10vh;
+  text-shadow: #6063c6 3px 3px;
+  line-height: 2em;
+}
+
+.temp {
+  font-family: 'Aclonica', sans-serif;
+  font-size: 700%;
+  color: #0f3d7a
+
+}
+
+
+.desc {
+  font-size: 2em;
+  font-style: italic;
+}
+
+#details {
+  width: 100%;
+  background-color: #c8d5e1;
+}
+
+.scale-btn {
+  font-size: 1.5em;
+}
+
+#toggle {
+  background-color: #708aac;
 }

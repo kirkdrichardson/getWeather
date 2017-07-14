@@ -1,20 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="./files/style.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="./files/script.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="./files/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="./files/script.js"></script>
 </head>
 <body>
-  <div class="container">
-    <div id="weatherBox">
-<div class="text"></div>
-<div class="button">
-<button>F</button>
-<button>C</button>
-<button id="position">Get Location</button>
-</div>
+<div id="bkgrd">
+  <div class="container-fluid" id="weatherBox">
+
+    <div class="row row-one">
+      <div class="col-sm-2 col-sm-offset-2"><i class="icon"></i></div>
+      <div class="col-sm-4" id="city"></div>
+    </div>
+
+    <div class="row row-two">
+      <div class="temp col-sm-3 col-sm-offset-4"></div>
+      <div class="col-sm-2 btn-group temp-toggle">
+        <button type="button" class="scale-btn" id="fahr">&deg;F</button>
+        <button type="button" class="scale-btn" id="celsius">&deg;C</button>
+      </div>
+    </div>
+
+
+    <div class="row row-three">
+      <div class=" col-sm-7 desc col-sm-offset-3"></div>
+      <div class="col-sm-2"><button id="details">details   <span class="badge">4</span></button></div>
+    </div>
   </div>
+</div>
 </body>
-<html>
+</html>
