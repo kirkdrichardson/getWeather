@@ -2,7 +2,7 @@ $(document).ready(function() {
   //////////////////////   FUNCTIONS   //////////////////////////////////////////
   // getPosition(), getData(), updateDOM(), getCity(), selectIcon(), toCelsius()
   /////////////////////////////////////////////////////////////////////////////
-  var data, temp;
+  var temp;
   // query user's lat-lon coordinates & pass values to getData function
   function getPosition() {
     if (navigator.geolocation) {
@@ -21,7 +21,6 @@ $(document).ready(function() {
     var urlStr = baseURI + coordinates;
     // gets data, updates global 'data' var, runs update() function (manipulates DOM)
     $.get(urlStr, function(data) {
-      data = data;
       if (data.currently) {updateDOM(data);}
       // if (data.currently.icon) {selectIcon(data);}
     }, "jsonp");
@@ -42,11 +41,24 @@ $(document).ready(function() {
   /////////////////////////////////////////////////////////////////////////////////
   // GET CITY FROM REVERSE GEOCODE OF LAT-LON COORDINATES
   function getCity() {
+
     baseURI = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
     key = "&key=AIzaSyDfbMGzRHXDFAkgOworfh33Jadfi1lXW2I";
     url = baseURI + coordinates + key;
+
     $.get(url, function(data) {
-      $("#city").html(data.results[0].address_components[3].long_name);
+      // an arr of objects w/ keys long_name, short_name, and types
+      var addressComponents = data.results[0].address_components;
+      // loops through type [] of the address_components []
+      // if it contains 'locality', use the long_name value for the city
+      for (var i = 0; i < addressComponents.length; i++) {
+        for (var j = 0; j < addressComponents[i].types.length; j++) {
+          if (addressComponents[i].types[j] == "locality") {
+            $("#city").html(addressComponents[i].long_name);
+            break;
+          }
+        }
+      }
     });
   }
   ///////////////////////////////////////////////////////////////////////////
@@ -56,48 +68,48 @@ $(document).ready(function() {
     var bkgrdOverlay = "linear-gradient(rgba(255,255,255,.6),rgba(255,255,255,.6)), ";
     switch (weatherType) {
       case "clear-day":
-        $("#bkgrd").css("background-image", bkgrdOverlay + "url('http://kanal5.com.mk/uploads/soncevo-21-.jpg')" );
-        return "wi wi-day-sunny";
-        break;
+      $("#bkgrd").css("background-image", bkgrdOverlay + "url('http://kanal5.com.mk/uploads/soncevo-21-.jpg')" );
+      return "wi wi-day-sunny";
+      break;
       case "clear-night":
-        $("#bkgrd").css("background-image", bkgrdOverlay + "url('https://cdn.davemorrowphotography.com/wp-content/uploads/2016/07/lightroom-photoshop-tutorials-nightphotography.jpg')" );
-        return "wi wi-night-clear";
-        break;
+      $("#bkgrd").css("background-image", bkgrdOverlay + "url('https://cdn.davemorrowphotography.com/wp-content/uploads/2016/07/lightroom-photoshop-tutorials-nightphotography.jpg')" );
+      return "wi wi-night-clear";
+      break;
       case "rain":
-        $("#bkgrd").css("background-image", bkgrdOverlay + "url('http://www.118italia.net/wp-content/uploads/2016/02/double-vitrage.jpg')" );
-        return "wi wi-rain";
-        break;
+      $("#bkgrd").css("background-image", bkgrdOverlay + "url('http://www.118italia.net/wp-content/uploads/2016/02/double-vitrage.jpg')" );
+      return "wi wi-rain";
+      break;
       case "snow":
-        $("#bkgrd").css("background-image", bkgrdOverlay + "url('http://i2.cdn.cnn.com/cnnnext/dam/assets/120206121110-burgos-winter-snap-horizontal-large-gallery.jpg')" );
-        return "wi wi-snow";
-        break;
+      $("#bkgrd").css("background-image", bkgrdOverlay + "url('http://i2.cdn.cnn.com/cnnnext/dam/assets/120206121110-burgos-winter-snap-horizontal-large-gallery.jpg')" );
+      return "wi wi-snow";
+      break;
       case "sleet":
-        $("#bkgrd").css("background-image", bkgrdOverlay + "url('https://icons.wxug.com/data/wximagenew/t/TaylorTot/209.jpg')" );
-        return "wi wi-sleet";
-        break;
+      $("#bkgrd").css("background-image", bkgrdOverlay + "url('https://icons.wxug.com/data/wximagenew/t/TaylorTot/209.jpg')" );
+      return "wi wi-sleet";
+      break;
       case "wind":
-        $("#bkgrd").css("background-image", bkgrdOverlay + "url('http://wmbf.images.worldnow.com/images/22523638_BG1.jpg')" );
-        return "wi wi-cloudy-gusts";
-        break;
+      $("#bkgrd").css("background-image", bkgrdOverlay + "url('http://wmbf.images.worldnow.com/images/22523638_BG1.jpg')" );
+      return "wi wi-cloudy-gusts";
+      break;
       case "fog":
-        $("#bkgrd").css("background-image", bkgrdOverlay + "url('http://static.tumblr.com/a636cba4cf6b086fe0c30d6a622a3c32/ksn8c6y/Kj0mi2wui/tumblr_static_trees_and_fog.jpg')" );
-        return "wi wi-fog";
-        break;
+      $("#bkgrd").css("background-image", bkgrdOverlay + "url('http://static.tumblr.com/a636cba4cf6b086fe0c30d6a622a3c32/ksn8c6y/Kj0mi2wui/tumblr_static_trees_and_fog.jpg')" );
+      return "wi wi-fog";
+      break;
       case "cloudy":
-        $("#bkgrd").css("background-image", bkgrdOverlay + "url('http://www.gazetteseries.co.uk/resources/images/5360796.jpg?display=1&htype=0&type=responsive-gallery')" );
-        return "wi wi-cloudy";
-        break;
+      $("#bkgrd").css("background-image", bkgrdOverlay + "url('http://www.gazetteseries.co.uk/resources/images/5360796.jpg?display=1&htype=0&type=responsive-gallery')" );
+      return "wi wi-cloudy";
+      break;
       case "partly-cloudy-day":
-        $("#bkgrd").css("background-image", bkgrdOverlay + "url('https://cloudysky.files.wordpress.com/2007/01/cloudsinegypt.jpg')" );
-        return "wi wi-day-cloudy";
-        break;
+      $("#bkgrd").css("background-image", bkgrdOverlay + "url('https://cloudysky.files.wordpress.com/2007/01/cloudsinegypt.jpg')" );
+      return "wi wi-day-cloudy";
+      break;
       case "partly-cloudy-night":
-        $("#bkgrd").css("background-image", bkgrdOverlay + "url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/ggZAv9L/half-moon-on-a-cloudy-night_4jrzmfff__M0000.jpg')" );
-        return "wi wi-night-alt-cloudy";
-        break;
+      $("#bkgrd").css("background-image", bkgrdOverlay + "url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/ggZAv9L/half-moon-on-a-cloudy-night_4jrzmfff__M0000.jpg')" );
+      return "wi wi-night-alt-cloudy";
+      break;
       default:
-        $("#bkgrd").css("background-image", bkgrdOverlay + "url('http://www.stevespanglerscience.com/blog/wp-content/uploads/2013/04/Clouds-ScienceBehind-Lake.jpg')" );
-        return "wi wi-cloud";
+      $("#bkgrd").css("background-image", bkgrdOverlay + "url('http://www.stevespanglerscience.com/blog/wp-content/uploads/2013/04/Clouds-ScienceBehind-Lake.jpg')" );
+      return "wi wi-cloud";
     }
   }
   /////////////////////////////////////////////////////////////////////////
